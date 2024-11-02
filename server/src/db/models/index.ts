@@ -27,5 +27,4 @@ const db = {
   Document,
   DocumentUser,
 };
-
 export default db;

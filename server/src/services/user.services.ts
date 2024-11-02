@@ -11,10 +11,12 @@ class UserServise {
     const salt = await genSalt();
     const hashedPassword = await hash(password, salt);
     const verificationToken = jwt.sign({ email }, 'verify_email');
+    // generate the token
     const user = await User.create({
       email: email,
       password: hashedPassword,
       verificationToken: verificationToken,
+      // pass the token
     });
     // call method to send verification email
   };
@@ -45,6 +47,7 @@ class UserServise {
     user: RequestUser | User
   ): Promise<TokenPair> => {
     const requestUser = await this.getRequestUser(user);
+    // generate teh tokens by jwt.sign
     const accessToken = jwt.sign(requestUser, 'access_token', {
       expiresIn: '24h',
     });
