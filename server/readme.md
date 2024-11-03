@@ -26,3 +26,6 @@
 
 4. LOGOUT ROUTE
    http://localhost:8000/auth/logout
+
+5. GET ROUTE FOR USER DETAILS
+   http://localhost:8000/user/342

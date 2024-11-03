@@ -73,6 +73,10 @@ class UserServise {
       },
     });
   };
+  public findUserById = async (id: number): Promise<User | null> => {
+    const user = await User.findByPk(id);
+    return user;
+  };
 }
 const userService = new UserServise();
 export { userService };

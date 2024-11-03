@@ -13,6 +13,12 @@ class UserController {
     await userService.createUser(email, password1);
     return res.sendStatus(200);
   });
+  public getUser = catchAsync(async (req: Request, res: Response) => {
+    const userId = parseInt(req.params.id);
+    const user = await userService.findUserById(userId);
+    if (user === null) return res.sendStatus(400);
+    return res.status(200).json(user);
+  });
 }
 const userController = new UserController();
 export { userController };
