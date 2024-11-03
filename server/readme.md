@@ -1,11 +1,28 @@
 1. FIRST ROUTE
-   ROUTES==>
+   ROUTES==> SIGNUP
    controllers==> user.controller, user.route. user.servics
 
    1. http://localhost:8000/user
+      BODY==>
+      {
+      "email":"byeee@gmail.com",
+      "password1":"123567890",
+      "password":"1234567890"
+      }
 
 2. SECOND ROUTE
-   ROUTES==>
+   ROUTES==> LOGIN ROUTE
    controllers==> AUTH.controller, AUTH.route. user.servics,AUTH.VALIDATORS
 
    1. http://localhost:8000/auth/login
+      BODY==>{
+      "email":"bye@gmail.com",
+      "password":"123567890"
+      }
+
+3. THIRD ROUTE
+   REFRESHTOKEN ROUTE
+   http://localhost:8000/auth/refresh
+
+4. LOGOUT ROUTE
+   http://localhost:8000/auth/logout
