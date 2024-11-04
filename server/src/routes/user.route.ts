@@ -17,4 +17,6 @@ router.put(
   userValidator.confirmResetPassword,
   userController.confirmResetPassword
 );
+
+router.put('verify-email/:token', userController.verifyEmail);
 export default router;

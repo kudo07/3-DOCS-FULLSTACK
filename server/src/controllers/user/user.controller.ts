@@ -4,6 +4,7 @@ import { validationResult } from 'express-validator';
 import { userService } from '../../services/user.services';
 import { resetPassword } from '../../responses';
 import jwt, { VerifyErrors } from 'jsonwebtoken';
+import { error } from 'console';
 
 class UserController {
   public register = catchAsync(async (req: Request, res: Response) => {
@@ -73,6 +74,40 @@ class UserController {
       );
     }
   );
+  public verifyEmail = catchAsync(async (req: Request, res: Response) => {
+    const verificationToken = req.params.token;
+    jwt.verify(
+      verificationToken,
+      'verify_email',
+      async (err: VerifyErrors | null, decoded: unknown) => {
+        if (err) return res.sendStatus(403);
+        try {
+          const { email } = decoded as { email: string };
+          userService
+            .findUserByPasswordResetToken(email, verificationToken)
+            .then((user) => {
+              if (!user || user.isVerified) {
+                return res.sendStatus(400);
+              }
+              userService
+                .updateIsVerified(user, true)
+                .then(() => {
+                  return res.sendStatus(200);
+                })
+                .catch(() => {
+                  return res.sendStatus(200);
+                });
+            })
+            .catch(() => {
+              return res.sendStatus(500);
+            });
+        } catch (error) {
+          console.log(error);
+          return res.sendStatus(403);
+        }
+      }
+    );
+  });
 }
 const userController = new UserController();
 export { userController };

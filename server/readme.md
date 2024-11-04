@@ -37,3 +37,6 @@
 7. PUT PASSWORD TOKEN
    http://localhost:8000/user/password/:token
    PUT REQUEST
+
+8. PUT VERIFY EMAIL PUT
+   http://localhost:800/user/verify-email/:token

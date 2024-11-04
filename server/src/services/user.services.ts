@@ -112,6 +112,11 @@ class UserServise {
       password: hashedPassword,
     });
   };
+  public updateIsVerified = async (user: User, isVerified: boolean) => {
+    await user.update({
+      isVerified,
+    });
+  };
 }
 const userService = new UserServise();
 export { userService };
