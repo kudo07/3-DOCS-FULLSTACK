@@ -29,3 +29,7 @@
 
 5. GET ROUTE FOR USER DETAILS
    http://localhost:8000/user/342
+
+6. RESETPASSWORD ROUTE POST ENDPOIN
+   http://localhost:8000/user/refresh-token
+   post request
