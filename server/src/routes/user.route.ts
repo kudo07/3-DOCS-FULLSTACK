@@ -12,4 +12,9 @@ router.post(
   userValidator.resetPassword,
   userController.resetPassword
 );
+router.put(
+  '/password/:token',
+  userValidator.confirmResetPassword,
+  userController.confirmResetPassword
+);
 export default router;

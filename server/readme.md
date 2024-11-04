@@ -33,3 +33,7 @@
 6. RESETPASSWORD ROUTE POST ENDPOIN
    http://localhost:8000/user/refresh-token
    post request
+
+7. PUT PASSWORD TOKEN
+   http://localhost:8000/user/password/:token
+   PUT REQUEST

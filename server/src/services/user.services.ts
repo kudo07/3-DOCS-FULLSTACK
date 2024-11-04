@@ -91,6 +91,27 @@ class UserServise {
     await user.update({ passwordResetToken });
     // send password reset emial method should be called
   };
+  public findUserByPasswordResetToken = async (
+    email: string,
+    passwordResetToken: string
+  ): Promise<User | null> => {
+    const user = await User.findOne({
+      where: {
+        email,
+        passwordResetToken,
+      },
+    });
+
+    return user;
+  };
+
+  public updatePassword = async (user: User, password: string) => {
+    const salt = await genSalt();
+    const hashedPassword = await hash(password, salt);
+    await user.update({
+      password: hashedPassword,
+    });
+  };
 }
 const userService = new UserServise();
 export { userService };
