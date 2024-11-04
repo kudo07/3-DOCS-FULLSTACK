@@ -39,4 +39,4 @@
    PUT REQUEST
 
 8. PUT VERIFY EMAIL PUT
-   http://localhost:800/user/verify-email/:token
+   http://localhost:800/user/verify-email/token
