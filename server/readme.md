@@ -40,3 +40,8 @@
 
 8. PUT VERIFY EMAIL PUT
    http://localhost:800/user/verify-email/token
+
+9. GETONE DOCUMENT
+   http://localhost:8000/document/idNumber
+
+10.
