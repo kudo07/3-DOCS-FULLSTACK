@@ -44,4 +44,5 @@
 9. GETONE DOCUMENT
    http://localhost:8000/document/idNumber
 
-10.
+10. GETALL DOCUMENT
+    http:localhost:8000/document/

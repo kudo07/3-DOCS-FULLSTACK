@@ -6,4 +6,5 @@ const router = Router();
 
 router.get(':/id', authenticate, documentController.getOne);
 
+router.get('/', authenticate, documentController.getAll);
 export default router;
