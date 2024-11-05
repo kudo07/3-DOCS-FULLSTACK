@@ -3,6 +3,7 @@ import catchAsync from '../../middlewares/catch-async';
 import documentServices from '../../services/document.services';
 import { DocumentUser } from '../../db/models/document-user.model';
 import { Document } from '../../db/models/document.model';
+import { validationResult } from 'express-validator';
 
 class DocumentController {
   public getOne = catchAsync(async (req: Request, res: Response) => {
@@ -29,6 +30,32 @@ class DocumentController {
     );
     documents.push(...sharedDocuments);
     return res.status(200).json(documents);
+  });
+
+  public update = catchAsync(async (req: Request, res: Response) => {
+    const err = validationResult(req);
+    if (!err.isEmpty()) {
+      return res.status(400).json(err);
+    }
+    if (!req.user) return res.sendStatus(401);
+
+    const { id } = req.params;
+    const { title, content, isPublic } = req.body;
+    const document = await documentServices.findDocumentById(
+      parseInt(id),
+      parseInt(req.user.id)
+    );
+
+    if (document === null) {
+      return res.sendStatus(404);
+    }
+    if (title !== undefined && title !== null) document.title = title;
+    if (content !== undefined && content !== null) document.content = content;
+    if (isPublic !== undefined && isPublic !== null)
+      document.isPublic = isPublic;
+    await document.save();
+
+    return res.sendStatus(200);
   });
 }
 

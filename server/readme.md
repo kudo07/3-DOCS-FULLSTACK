@@ -46,3 +46,6 @@
 
 10. GETALL DOCUMENT
     http:localhost:8000/document/
+
+11. PUT REQUEST ENDPOINT
+    http://localhost:8000/document/idNumber
